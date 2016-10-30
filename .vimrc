@@ -29,12 +29,22 @@ Plugin 'mattn/emmet-vim'
 Plugin 'moll/vim-node'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'jacoborus/tender'
+Plugin 'sickill/vim-monokai'
+" Plugin 'bigfish/vim-js-context-coloring'
+" Plugin 'othree/yajs.vim'
+" Plugin 'othree/es.next.syntax.vim'
+" Plugin 'mxw/vim-jsx'
+" Plugin 'elzr/vim-json'
+"Plugin 'othree/jsdoc-syntax.vim'
+Plugin 'heavenshell/vim-jsdoc'
+" Plugin 'othree/javascript-libraries-syntax.vim'
+" Plugin 'flowtype/vim-flow'
 
 call vundle#end()
 filetype plugin indent on
 
 syntax enable
-colorscheme tender
+colorscheme monokai
 
 " Leader
 let mapleader = ","
@@ -90,7 +100,7 @@ augroup vimrcEx
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
   autocmd BufRead,BufNewFile *.md set filetype=markdown
-  autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
+  autocmd BufRead,BufNewFile .{jscs,jshint,eslint,babel}rc set filetype=json
 augroup END
 
 " When the type of shell script is /bin/sh, assume a POSIX-compatible
@@ -202,7 +212,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](doc|tmp|node_modules|dist|build|\.idea|\.git)',
-  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'file': '\v\.(exe|so|dll|log)$',
   \ }
 
 let g:syntastic_mode_map = { 'mode': 'active',
@@ -217,8 +227,11 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['flow', 'eslint']
 
 " let g:ycm_add_preview_to_completeopt=0
 " let g:ycm_confirm_extra_conf=0
 let g:ycm_autoclose_preview_window_after_completion = 1
+
+let g:jsx_ext_required = 0
+let g:used_javascript_libs = 'react,chai'
